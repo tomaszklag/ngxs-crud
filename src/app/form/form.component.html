@@ -1,0 +1,30 @@
+<div>
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>UserId</label>
+      <input type="number" formControlName="userId" #userId />
+      <div *ngIf="
+          todoForm.controls['userId'].invalid && 
+          (todoForm.controls['userId'].dirty || todoForm.controls['userId'].touched)">
+        <div *ngIf="todoForm.controls['userId'].errors.required">
+          User Id is required.
+        </div>
+      </div>
+    </div>
+    <div>
+      <label>Title</label>
+      <input type="title" formControlName="title" #title />
+      <div *ngIf="todoForm.controls['title'].invalid &&
+         (todoForm.controls['title'].dirty || todoForm.controls['title'].touched)">
+        <div *ngIf="todoForm.controls['title'].errors.required">
+          Title is required.
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="submit" [disabled]="todoForm.pristine || todoForm.invalid">Submit
+      </button>
+      <button (click)="clearForm()">Clear</button>
+    </div>
+  </form>
+</div>
